@@ -1,0 +1,11 @@
+groups:
+  - name: memory_usage_alerts
+    rules:
+      - alert: HighMemoryUsage
+        expr: system_memory_usage_bytes > 0.6 * (1024 * 1024 * 1024)  # 60% dari 1GB
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High Memory Usage"
+          description: "Memory usage is above 60%. Current usage: {{ $value }}"
